@@ -42,7 +42,7 @@
       <div class="row">
       <!-- Blog Entries Column -->
  			<%
-				for(int i=0;i<6;i++){
+				for(int i=0;i<9;i++){
 			%>
         <div class="col-4">
         <p>  </p>
@@ -61,8 +61,8 @@
  
   <!-- Footer -->
   <p></p>
-  <footer class="py-5 bg-dark">
-    <div class="container">
+  <footer class="py-5 bg-dark fixed-bottom">
+    <div class="container"> 
       <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
     </div>
     <!-- /.container -->
