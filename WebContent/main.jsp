@@ -17,7 +17,7 @@ p {
 		<jsp:include page="nav.jsp"></jsp:include>
 	
 
-
+	
 
 
 	<!-- Footer -->
