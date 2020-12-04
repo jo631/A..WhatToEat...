@@ -14,10 +14,20 @@ p {
 
 <body>
 	<!-- Navigation -->
-		<jsp:include page="nav.jsp"></jsp:include>
-	
+	<jsp:include page="nav.jsp"></jsp:include>
 
-	
+
+	<div class="container">
+		<div class="row">
+			<form class="form-inline">
+				<div class="checkbox">
+					<input type="checkbox"> hi
+				</div>
+				<button type="submit" class="btn btn-primary mb-3">ㅎㅇ</button>
+				<button type="submit" class="btn btn-secondary mb-3">ㅎㅇ</button>
+			</form>
+		</div>
+	</div>
 
 
 	<!-- Footer -->

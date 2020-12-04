@@ -5,19 +5,12 @@
 <link href="./resources/css/blog-home.css" />
 <link href="./resources/css/bootstrap.css" rel="stylesheet" />
 <title>상품</title>
-<style>
-p {
-	margin: 20px 0px;
-}
-</style>
 </head>
 
 <body>
 	<!-- Navigation -->
 		<jsp:include page="nav.jsp"></jsp:include>
 	
-
-
 
 	<div class="container">
 		<div class="row">
