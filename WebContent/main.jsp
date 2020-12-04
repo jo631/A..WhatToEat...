@@ -29,37 +29,21 @@
 			<div class="row">
 				<div class="col-md-12">
 					<fieldset>
-						<div class="checkbox">
-							<input id="checkbox1" class="styled" type="checkbox"> <label
-								for="checkbox1"> Default </label>
+						<%
+							for (int i = 1; i < 10; i++) {
+								String id = "inlineCheckbox"+i+"sm";
+								String value = "option" + i;
+								String label = "inlineCheckbox"+i+"sm";
+								String name = i+"번쨰";
+						%>
+						<div class="checkbox checkbox-inline checkbox-circle checkbox-sm">
+							<input type="checkbox" class="styled" id=<%=id %>
+								value=<%=value %>> <label for=<%=label %>>
+								<%=name %> </label>
 						</div>
-						<div class="checkbox checkbox-primary">
-							<input id="checkbox2" class="styled" type="checkbox" checked>
-							<label for="checkbox2"> Primary </label>
-						</div>
-						<div class="checkbox checkbox-success">
-							<input name="RememberMe" type="hidden" value="false"> <input
-								class="styled" data-val="true"
-								data-val-required="Требуется поле Remember me?." id="RememberMe"
-								name="RememberMe" type="checkbox" value="true"> <label
-								for="RememberMe"> Success2 </label>
-						</div>
-						<div class="checkbox checkbox-success">
-							<input id="checkbox3" class="styled" type="checkbox"> <label
-								for="checkbox3"> Success </label>
-						</div>
-						<div class="checkbox checkbox-info">
-							<input id="checkbox4" class="styled" type="checkbox"> <label
-								for="checkbox4"> Info </label>
-						</div>
-						<div class="checkbox checkbox-warning">
-							<input id="checkbox5" type="checkbox" class="styled" checked>
-							<label for="checkbox5"> Warning </label>
-						</div>
-						<div class="checkbox checkbox-danger">
-							<input id="checkbox6" type="checkbox" class="styled" checked>
-							<label for="checkbox6"> Check me out </label>
-						</div>
+						<%
+							}
+						%>
 					</fieldset>
 				</div>
 			</div>
