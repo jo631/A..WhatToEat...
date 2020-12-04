@@ -12,4 +12,11 @@ public class RestaurantRepository {
 	public static RestaurantRepository getInstance() {
 		return instance;
 	}
+	
+	//DB연결
+	
+	//위도경도 값 받아서 리스트 출력
+	
+	
+	
 }
