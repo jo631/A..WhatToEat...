@@ -6,14 +6,13 @@
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="vendor/css/blog-home.css" rel="stylesheet">
-
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous">
+	>
 <link
 	href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css"
 	rel="stylesheet" />
+
 
 <title>메인</title>
 </head>
@@ -26,7 +25,7 @@
 	<div class="container">
 		<h3>이거는 오늘 안땡겨요</h3>
 		<form role="form">
-			<div class="row">
+			<div class="row justify-content-center align-items-center">
 				<div class="col-md-12">
 					<fieldset>
 						<%
