@@ -2,15 +2,18 @@
 
 <html>
 <head>
-<link href="./resources/css/blog-home.css" />
-<link href="./resources/css/bootstrap.css" rel="stylesheet" />
+<!-- Bootstrap core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/blog-home.css" rel="stylesheet">
 <title>상품</title>
 </head>
 
 <body>
 	<!-- Navigation -->
-		<jsp:include page="nav.jsp"></jsp:include>
-	
+	<jsp:include page="nav.jsp"></jsp:include>
+
 
 	<div class="container">
 		<div class="row">
