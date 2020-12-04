@@ -6,13 +6,26 @@
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="vendor/css/blog-home.css" rel="stylesheet">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	>
-<link
-	href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css"
-	rel="stylesheet" />
 
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script>
+	$(function() {
+		// Geolocation API에 액세스할 수 있는지를 확인
+		if (navigator.geolocation) {
+			//위치 정보를 얻기
+			navigator.geolocation.getCurrentPosition(function(pos) {
+				$('#latitude').html(pos.coords.latitude); // 위도
+				$('#longitude').html(pos.coords.longitude); // 경도
+			});
+		} else {
+			alert("이 브라우저에서는 Geolocation이 지원되지 않습니다.")
+			//구하지 못했을때 latitude랑 longitude 초기값 설정하기
+		}
+	});
+</script>
 
 <title>메인</title>
 <style>
@@ -52,7 +65,7 @@ p {
 <body>
 	<!-- Navigation -->
 	<jsp:include page="nav.jsp"></jsp:include>
-	
+	<br><br>
 	<!-- Filter -->
 	<div class="filter">
 		<div style="display: flex;">
@@ -73,6 +86,7 @@ p {
 		</div>
 		
 		<button type="button" class="btn btn-primary">선택</button>
+
 	</div>
 	
 	<div class="whatToEat">
@@ -85,7 +99,7 @@ p {
 		<button style="margin-top:20px;" type="button" class="btn btn-warning">재시작</button>
 	</div>
 
-	<script tpye="text/javascript">
+	<script type="text/javascript">
 		function checkForm() {
 			var food = [];
 			var checkCount = document.getElementsByName("food").length;
@@ -104,9 +118,6 @@ p {
 	<jsp:include page="footer.jsp"></jsp:include>
 
 
-	<!-- Bootstrap core JavaScript -->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
