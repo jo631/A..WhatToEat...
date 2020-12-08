@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ page import="dto.Restaurant"%>
+<%@ page import="dao.RestaurantRepository"%>
 
 <html>
 <head>
@@ -112,7 +114,11 @@ p {
 			console.log(food);
 		}
 	</script>
-
+	
+	<%
+		RestaurantRepository dao = new RestaurantRepository();
+	%>
+	
 
 	<!-- Footer -->
 	<jsp:include page="footer.jsp"></jsp:include>
