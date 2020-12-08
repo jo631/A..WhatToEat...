@@ -4,31 +4,28 @@ import java.sql.*;
 
 public class JDBC {
 	Connection conn = null;
-	String url = "jdbc:mysql://localhost/whattoeat";
-	String userName = "root";
-	String pw = "database";
+	Statement stmt = null;
+	ResultSet rs = null;
+	final String url = "jdbc:mysql://localhost:3306/WhatToEat";
+	final String userName = "root";
+	final String pw = "database";
 	
 	public JDBC() {
-		try
-		{
+		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			// @param getConnection(url, userName, password);
-			// @return Connection
 			conn = DriverManager.getConnection(url, userName, pw);
 			System.out.println("연결 성공");
+			stmt = conn.createStatement();
+			Test();
+			
 		}
-		
-		catch(ClassNotFoundException e)
-		{
+		catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패");
-		}
-		catch(SQLException e)
-		{
+		} catch (SQLException e) {
 			System.out.println("에러: " + e);
 		}
-		
-		finally
-		{
+
+		finally {
 			try {
 				if (conn != null && !conn.isClosed()) {
 					conn.close();
@@ -39,4 +36,17 @@ public class JDBC {
 		}
 	}
 	
+	
+	public void Test() throws SQLException {
+		rs = stmt.executeQuery("SELECT * FROM whattoeat.restaurant WHERE id=1");
+		while (rs.next()) {
+			String state = rs.getString("state");
+			String city = rs.getString("city");
+			String name = rs.getString("name");
+			
+			System.out.println(state+city+" "+name);
+		}
+	}
+
+
 }
