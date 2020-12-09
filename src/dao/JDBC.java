@@ -12,7 +12,6 @@ public class JDBC {
 	
 	public JDBC() {
 		try {
-			
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(url, userName, pw);
 			System.out.println("연결 성공");
