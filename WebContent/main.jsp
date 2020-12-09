@@ -89,8 +89,6 @@ p {
 		} else{
 			randValue = allFood.get(r.nextInt(allFood.size()));
 		}
-		
-		
 	%>
 	<form name="form" action="FoodServlet" method="post" class="filter">
 		<div style="display: flex;">
@@ -109,7 +107,7 @@ p {
 			<div class="check"><input type='checkbox' name="food" value="주점" <%=foods.contains("주점") ? "checked" : ""%> /> 주점</div>
 			<div class="check"><input type='checkbox' name="food" value="국밥" <%=foods.contains("국밥") ? "checked" : ""%> /> 국밥</div>
 		</div>
-		
+		<input type='hidden' name="rand" value="" />
 		<button type="button" onclick="onSubmit()" class="btn btn-primary">선택</button>
 	</form>
 	
@@ -120,7 +118,17 @@ p {
 	<!-- Button -->
 	<div class="button">
 		<button type="button" class="btn btn-success">아 뭐먹지?</button>
-		<button style="margin-top:20px;" type="button" class="btn btn-warning">재시작</button>
+		<form name="restart" action = "FoodServlet" method="post" style="margin-top:20px;">
+			<%
+				for(String i : foods) {
+			%>
+				<input type="hidden" name="food" value=<%=i %>/>
+			<%
+				}
+			%>
+			<input type="hidden" name="rand" value=<%=randValue%>/>
+			<button type="button" class="btn btn-warning" onclick="onRestart()">재시작</button>
+		</form>
 	</div>
 
 	<script type="text/javascript">
@@ -140,6 +148,12 @@ p {
 			var form = document.form;
 			form.submit();
 		}
+		
+		function onRestart(){
+			var form = document.restart;
+			form.submit();
+		}
+		
 	</script>
 	
 	<%
