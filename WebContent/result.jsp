@@ -30,7 +30,7 @@
 						<h2 class="card-title"><%=i + 1%>번째
 						</h2>
 						<p class="card-text">ㅇㄹㅇㄹㅇㄹ</p>
-						<a href="#" class="btn btn-primary">Read More &rarr;</a>
+						<a href="./detail.jsp" class="btn btn-primary">Read More &rarr;</a>
 					</div>
 				</div>
 			</div>
