@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -35,8 +34,8 @@ public class FoodServlet extends HttpServlet {
 
 		if (foods != null) {
 			for (String food : foods) {
-				System.out.println(food);
-				list.add(food);
+				//System.out.println(food);
+				list.add(food.split("/")[0]);
 			}
 		}
 		
