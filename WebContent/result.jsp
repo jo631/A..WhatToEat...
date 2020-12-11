@@ -19,7 +19,7 @@
 		<div class="row">
 			<!-- Blog Entries Column -->
 			<%
-				for (int i = 0; i < 9; i++) {
+				for (int i = 0; i < 3; i++) {
 			%>
 			<div class="col-4">
 				<p></p>
@@ -39,7 +39,10 @@
 			%>
 		</div>
 	</div>
-
+	<% request.setCharacterEncoding("UTF-8"); %>
+	<%=request.getParameter("value")%>
+	<%=request.getParameter("latitude")%>
+	<%=request.getParameter("longitude")%>
 	<!-- Footer -->
 	<jsp:include page="footer.jsp"></jsp:include>
 
