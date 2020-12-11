@@ -16,7 +16,6 @@ public class JDBC {
 			conn = DriverManager.getConnection(url, userName, pw);
 			System.out.println("연결 성공");
 			stmt = conn.createStatement();
-			Test();
 			
 		}
 		catch (ClassNotFoundException e) {
