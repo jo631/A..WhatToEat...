@@ -113,8 +113,8 @@ p {
 	<!-- Button -->
 	<div class="button">
 		<form name="go" action="result.jsp" method="post">	
-			<input type="hidden" id="latitude" name="latitude" value=null>
-			<input type="hidden" id="longitude" name="longitude" value=null> 
+			<input type="hidden" id="latitude" name="latitude">
+			<input type="hidden" id="longitude" name="longitude"> 
 			<input type="hidden" name="value" value=<%=randValue %>>
 			<button type="submit" class="btn btn-success">아 뭐먹지?</button>
 			

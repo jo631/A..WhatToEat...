@@ -17,7 +17,16 @@
 	<jsp:include page="nav.jsp"></jsp:include>
 	
 	<%
+		request.setCharacterEncoding("UTF-8");
 		RestaurantRepository dao = new RestaurantRepository();
+		String foodName = request.getParameter("value");
+		float latitude=0,longitude=0;
+		
+		if(!request.getParameter("latitude").isEmpty() && !request.getParameter("longitude").isEmpty()){
+			latitude = Float.parseFloat(request.getParameter("latitude"));
+			longitude = Float.parseFloat(request.getParameter("longitude"));
+		}
+		System.out.println(foodName + latitude + longitude);
 	%>
 	
 	<div class="container">
@@ -44,10 +53,7 @@
 			%>
 		</div>
 	</div>
-	<% request.setCharacterEncoding("UTF-8"); %>
-	<%=request.getParameter("value")%>
-	<%=request.getParameter("latitude")%>
-	<%=request.getParameter("longitude")%>
+	
 	<!-- Footer -->
 	<jsp:include page="footer.jsp"></jsp:include>
 

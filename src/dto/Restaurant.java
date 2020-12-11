@@ -3,6 +3,7 @@ package dto;
 import java.io.Serializable;
 
 public class Restaurant implements Serializable {
+	private int id;
 	private String state;
 	private String city;
 	private String name;
@@ -17,9 +18,10 @@ public class Restaurant implements Serializable {
 
 	private static final long serialVersionUID = -4274700572038677000L;
 
-	public Restaurant(String state, String city, String name, String streetName, String detailAddr, String category,
+	public Restaurant(int id,String state, String city, String name, String streetName, String detailAddr, String category,
 			String phoneNumber, String zipCode, Double latitude, Double longitude, String imagePath) {
 		super();
+		this.id = id;
 		this.state = state;
 		this.city = city;
 		this.name = name;
@@ -119,6 +121,14 @@ public class Restaurant implements Serializable {
 
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }
