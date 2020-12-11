@@ -19,6 +19,7 @@
 	<%
 		request.setCharacterEncoding("UTF-8");
 		RestaurantRepository dao = new RestaurantRepository();
+		
 		String foodName = request.getParameter("value");
 		float latitude=0,longitude=0;
 		
@@ -26,9 +27,8 @@
 			latitude = Float.parseFloat(request.getParameter("latitude"));
 			longitude = Float.parseFloat(request.getParameter("longitude"));
 		}
-		System.out.println(foodName + latitude + longitude);
 		
-		dao.getById(1);
+		//dao.getById(1);
 	%>
 	
 	<div class="container">

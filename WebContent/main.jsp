@@ -3,7 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=utf-8"%>
-
+<%@ page import="dao.RestaurantRepository"%>
 <html>
 <head>
 <!-- Bootstrap core CSS -->
@@ -61,7 +61,11 @@ p {
 	<br>
 	<!-- Filter -->
 	<%
-		List<String> foods = (List<String>) request.getAttribute("foods");
+	RestaurantRepository dao = new RestaurantRepository();
+	dao.getById(1);
+	
+	
+	List<String> foods = (List<String>) request.getAttribute("foods");
 	if (foods == null)
 		foods = new ArrayList<String>();
 
@@ -113,8 +117,8 @@ p {
 	<!-- Button -->
 	<div class="button">
 		<form name="go" action="result.jsp" method="post">	
-			<input type="hidden" id="latitude" name="latitude">
-			<input type="hidden" id="longitude" name="longitude"> 
+			<input type="hidden" id="latitude" name="latitude" value="">
+			<input type="hidden" id="longitude" name="longitude" value=""> 
 			<input type="hidden" name="value" value=<%=randValue %>>
 			<button type="submit" class="btn btn-success">아 뭐먹지?</button>
 			
