@@ -54,6 +54,7 @@
 						</h2>
 						<p class="card-text"><%=r.getStreetName() %></p>
 						<a href="#" class="btn btn-primary">Read More &rarr;</a>
+
 					</div>
 				</div>
 			</div>
