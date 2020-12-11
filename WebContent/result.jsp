@@ -27,6 +27,8 @@
 			longitude = Float.parseFloat(request.getParameter("longitude"));
 		}
 		System.out.println(foodName + latitude + longitude);
+		
+		dao.getById(1);
 	%>
 	
 	<div class="container">

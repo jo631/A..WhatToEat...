@@ -11,15 +11,14 @@ public class Restaurant implements Serializable {
 	private String detailAddr;
 	private String category;
 	private String phoneNumber;
-	private String zipCode;
-	private Double latitude;
-	private Double longitude;
+	private float latitude;
+	private float longitude;
 	private String imagePath;
 
 	private static final long serialVersionUID = -4274700572038677000L;
 
 	public Restaurant(int id,String state, String city, String name, String streetName, String detailAddr, String category,
-			String phoneNumber, String zipCode, Double latitude, Double longitude, String imagePath) {
+			String phoneNumber, float latitude, float longitude, String imagePath) {
 		super();
 		this.id = id;
 		this.state = state;
@@ -29,7 +28,6 @@ public class Restaurant implements Serializable {
 		this.detailAddr = detailAddr;
 		this.category = category;
 		this.phoneNumber = phoneNumber;
-		this.zipCode = zipCode;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.imagePath = imagePath;
@@ -91,27 +89,19 @@ public class Restaurant implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getZipCode() {
-		return zipCode;
-	}
-
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
-
-	public Double getLatitude() {
+	public float getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(Double latitude) {
+	public void setLatitude(float latitude) {
 		this.latitude = latitude;
 	}
 
-	public Double getLongitude() {
+	public float getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(Double longitude) {
+	public void setLongitude(float longitude) {
 		this.longitude = longitude;
 	}
 
