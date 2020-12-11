@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dto.Restaurant;
@@ -15,11 +16,16 @@ public class RestaurantRepository {
 	}
 	
 	public RestaurantRepository() {
+		//DB연결
 		db = new JDBC();
 	}
 	
-	//DB연결
+	public Restaurant getById(int id) throws SQLException {
+		return db.getDbById(id);		
+	}
 	
-	//위도경도 값 받아서 리스트 출력
+	public ArrayList<Restaurant> getByCategory(String category) throws SQLException{
+		return db.getDBbyCategory(category);
+	}
 	
 }

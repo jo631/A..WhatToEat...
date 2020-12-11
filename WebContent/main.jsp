@@ -3,9 +3,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=utf-8"%>
-<%@ page import="dto.Restaurant"%>
-<%@ page import="dao.RestaurantRepository"%>
-
 <html>
 <head>
 <!-- Bootstrap core CSS -->
@@ -17,21 +14,7 @@
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<script>
-	$(function() {
-		// Geolocation API에 액세스할 수 있는지를 확인
-		if (navigator.geolocation) {
-			//위치 정보를 얻기
-			navigator.geolocation.getCurrentPosition(function(pos) {
-				$('#latitude').html(pos.coords.latitude); // 위도
-				$('#longitude').html(pos.coords.longitude); // 경도
-			});
-		} else {
-			alert("이 브라우저에서는 Geolocation이 지원되지 않습니다.")
-			//구하지 못했을때 latitude랑 longitude 초기값 설정하기
-		}
-	});
-</script>
+
 
 <title>메인</title>
 <style>
@@ -77,7 +60,7 @@ p {
 	<br>
 	<!-- Filter -->
 	<%
-		List<String> foods = (List<String>) request.getAttribute("foods");
+	List<String> foods = (List<String>) request.getAttribute("foods");
 	if (foods == null)
 		foods = new ArrayList<String>();
 
@@ -88,7 +71,6 @@ p {
 		<%
 			for (int i = 0; i < allFood.size(); i++) {
 				if (i % 6 == 0) {
-				System.out.println("gd");
 		%>
 				<div style="display: flex">
 		<%
@@ -129,9 +111,10 @@ p {
 
 	<!-- Button -->
 	<div class="button">
-		<form name="go" action="result.jsp" method="post">
-			<input type="hidden" name="latitude" value="">
-			<input type="hidden" name="longitude" value ="">
+		<form name="go" action="result.jsp" method="post">	
+			<input type="hidden" id="latitude" name="latitude" value="">
+			<input type="hidden" id="longitude" name="longitude" value=""> 
+			<input type="hidden" name="value" value=<%=randValue %>>
 			<button type="submit" class="btn btn-success">아 뭐먹지?</button>
 			
 		</form>
@@ -145,6 +128,7 @@ p {
 			<%
 				}
 			%>
+			
 			<%
 				if (!allFood.isEmpty()) {
 			%>
@@ -187,11 +171,28 @@ p {
 		}
 	</script>
 
-	<%
-		RestaurantRepository dao = new RestaurantRepository();
-	%>
 
+	<script>
+			$(function() {
+				// Geolocation API에 액세스할 수 있는지를 확인
+				if (navigator.geolocation) {
+					//위치 정보를 얻기
+					navigator.geolocation.getCurrentPosition(function(pos) {
+						$('#latitude').html(pos.coords.latitude); // 위도
+						$('#longitude').html(pos.coords.longitude); // 경도
+						
+						document.go.latitude.value = pos.coords.latitude;
+						document.go.longitude.value = pos.coords.longitude;	
+					});
+				} else {
+					alert("이 브라우저에서는 Geolocation이 지원되지 않습니다.")
+					//구하지 못했을때 latitude랑 longitude 초기값 설정하기
+				}
+			});
 
+			 </script>
+	
+	
 	<!-- Footer -->
 	<jsp:include page="footer.jsp"></jsp:include>
 
