@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ page import="dto.Restaurant"%>
+<%@ page import="dao.RestaurantRepository"%>
 
 <html>
 <head>
@@ -13,8 +15,11 @@
 <body>
 	<!-- Navigation -->
 	<jsp:include page="nav.jsp"></jsp:include>
-
-
+	
+	<%
+		RestaurantRepository dao = new RestaurantRepository();
+	%>
+	
 	<div class="container">
 		<div class="row">
 			<!-- Blog Entries Column -->
