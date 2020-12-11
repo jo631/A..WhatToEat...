@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import dto.Restaurant;
 
@@ -45,6 +46,31 @@ public class JDBC {
 					longitude, imagePath);
 		}
 		return temp;
+	}
+	
+	public ArrayList<Restaurant> getDBbyCategory(String category) throws SQLException {
+		ArrayList<Restaurant> list = new ArrayList<Restaurant>();
+		
+		rs = stmt.executeQuery("SELECT * FROM whattoeat.restaurant HAVING category = \""+category+"\"");
+		
+		while (rs.next()) {
+			int num = rs.getInt("id");
+			String state = rs.getString("state");
+			String city = rs.getString("city");
+			String name = rs.getString("name");
+			String streetName = rs.getString("streetName");
+			String detailAddr = rs.getString("detailAddr");
+			String cate = rs.getString("category");
+			String phoneNumber = rs.getString("phoneNumber");
+			float latitude = Float.parseFloat(rs.getString("latitude"));
+			float longitude = Float.parseFloat(rs.getString("longitude"));
+			String imagePath = rs.getString("imagePath");
+			list.add(new Restaurant(num, state, city, name, streetName, detailAddr, cate, phoneNumber, latitude,
+					longitude, imagePath));
+		}
+		
+		
+		return list;
 	}
 
 	public void Test() throws SQLException {

@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="dto.Restaurant"%>
 <%@ page import="dao.RestaurantRepository"%>
@@ -15,12 +16,19 @@
 <body>
 	<!-- Navigation -->
 	<jsp:include page="nav.jsp"></jsp:include>
-	
+	<br><br><br>
 	<%
 		request.setCharacterEncoding("UTF-8");
-		RestaurantRepository dao = new RestaurantRepository();
-		
+		RestaurantRepository dao = RestaurantRepository.getInstance();
 		String foodName = request.getParameter("value");
+		ArrayList<Restaurant> list = dao.getByCategory(foodName);
+		
+		
+		for(Restaurant a : list){
+			System.out.println(a.getName());
+		}
+		
+		
 		float latitude=0,longitude=0;
 		
 		if(!request.getParameter("latitude").isEmpty() && !request.getParameter("longitude").isEmpty()){
@@ -28,24 +36,23 @@
 			longitude = Float.parseFloat(request.getParameter("longitude"));
 		}
 		
-		//dao.getById(1);
 	%>
 	
 	<div class="container">
 		<div class="row">
 			<!-- Blog Entries Column -->
 			<%
-				for (int i = 0; i < 3; i++) {
+				for (Restaurant r : list) {
 			%>
 			<div class="col-4">
 				<p></p>
 				<div class="card">
-					<img class="card-img-top" src="http://placehold.it/750x300"
+					<img class="card-img-top" src="resource/japan.jpg"
 						alt="Card image cap">
 					<div class="card-body">
-						<h2 class="card-title"><%=i + 1%>번째
+						<h2 class="card-title"><%=r.getName()%>
 						</h2>
-						<p class="card-text">ㅇㄹㅇㄹㅇㄹ</p>
+						<p class="card-text"><%=r.getStreetName() %></p>
 						<a href="#" class="btn btn-primary">Read More &rarr;</a>
 					</div>
 				</div>
@@ -55,7 +62,7 @@
 			%>
 		</div>
 	</div>
-	
+	<br><br><br><br>
 	<!-- Footer -->
 	<jsp:include page="footer.jsp"></jsp:include>
 

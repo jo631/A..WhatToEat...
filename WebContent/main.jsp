@@ -3,7 +3,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=utf-8"%>
-<%@ page import="dao.RestaurantRepository"%>
 <html>
 <head>
 <!-- Bootstrap core CSS -->
@@ -61,10 +60,6 @@ p {
 	<br>
 	<!-- Filter -->
 	<%
-	RestaurantRepository dao = new RestaurantRepository();
-	dao.getById(1);
-	
-	
 	List<String> foods = (List<String>) request.getAttribute("foods");
 	if (foods == null)
 		foods = new ArrayList<String>();
