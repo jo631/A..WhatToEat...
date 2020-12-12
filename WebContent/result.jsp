@@ -23,12 +23,6 @@
 		String foodName = request.getParameter("value");
 		ArrayList<Restaurant> list = dao.getByCategory(foodName);
 		
-		
-		for(Restaurant a : list){
-			System.out.println(a.getName());
-		}
-		
-		
 		float latitude=0,longitude=0;
 		
 		if(!request.getParameter("latitude").isEmpty() && !request.getParameter("longitude").isEmpty()){
