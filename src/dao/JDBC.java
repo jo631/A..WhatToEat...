@@ -9,7 +9,7 @@ public class JDBC {
 	Connection conn = null;
 	Statement stmt = null;
 	ResultSet rs = null;
-	final String url = "jdbc:mysql://localhost:3306/WhatToEat?characterEncoding=UTF-8&serverTimezone=UTC";
+	final String url = "jdbc:mysql://whattoeat.c9ihef0cs7y5.us-east-1.rds.amazonaws.com:3306/WhatToEat?characterEncoding=UTF-8&serverTimezone=UTC";	
 	final String userName = "root";
 	final String pw = "database";
 
@@ -28,7 +28,7 @@ public class JDBC {
 	}
 
 	public Restaurant getDbById(int id) throws SQLException {
-		rs = stmt.executeQuery("SELECT * FROM whattoeat.restaurant WHERE id=" + id);
+		rs = stmt.executeQuery("SELECT * FROM WhatToEat.restaurant WHERE id=" + id);
 		Restaurant temp = null;
 		while (rs.next()) {
 			int num = rs.getInt("id");
@@ -39,8 +39,10 @@ public class JDBC {
 			String detailAddr = rs.getString("detailAddr");
 			String category = rs.getString("category");
 			String phoneNumber = rs.getString("phoneNumber");
-			float latitude = Float.parseFloat(rs.getString("latitude"));
-			float longitude = Float.parseFloat(rs.getString("longitude"));
+			//float latitude = Float.parseFloat(rs.getString("latitude"));
+			//float longitude = Float.parseFloat(rs.getString("longitude"));
+			float latitude = rs.getFloat("latitude");
+			float longitude = rs.getFloat("longitude");
 			String imagePath = rs.getString("imagePath");
 			temp = new Restaurant(num, state, city, name, streetName, detailAddr, category, phoneNumber, latitude,
 					longitude, imagePath);
@@ -51,7 +53,7 @@ public class JDBC {
 	public ArrayList<Restaurant> getDBbyCategory(String category) throws SQLException {
 		ArrayList<Restaurant> list = new ArrayList<Restaurant>();
 		
-		rs = stmt.executeQuery("SELECT * FROM whattoeat.restaurant HAVING category = \""+category+"\"");
+		rs = stmt.executeQuery("SELECT * FROM WhatToEat.restaurant HAVING category = \""+category+"\"");
 		
 		while (rs.next()) {
 			int num = rs.getInt("id");
@@ -62,8 +64,8 @@ public class JDBC {
 			String detailAddr = rs.getString("detailAddr");
 			String cate = rs.getString("category");
 			String phoneNumber = rs.getString("phoneNumber");
-			float latitude = Float.parseFloat(rs.getString("latitude"));
-			float longitude = Float.parseFloat(rs.getString("longitude"));
+			float latitude = rs.getFloat("latitude");
+			float longitude = rs.getFloat("longitude");
 			String imagePath = rs.getString("imagePath");
 			list.add(new Restaurant(num, state, city, name, streetName, detailAddr, cate, phoneNumber, latitude,
 					longitude, imagePath));
@@ -71,17 +73,6 @@ public class JDBC {
 		
 		
 		return list;
-	}
-
-	public void Test() throws SQLException {
-		rs = stmt.executeQuery("SELECT * FROM whattoeat.restaurant WHERE id=1");
-		while (rs.next()) {
-			String state = rs.getString("state");
-			String city = rs.getString("city");
-			String name = rs.getString("name");
-
-			System.out.println(state + city + " " + name);
-		}
 	}
 
 }
