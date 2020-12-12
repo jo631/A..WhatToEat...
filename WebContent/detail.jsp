@@ -55,12 +55,19 @@
 			<div><h3>이름 : <%=restaurant.getName() %></h3></div>
 			<div>카테고리 : <span class="badge bg-info text-white"><%=restaurant.getCategory() %></span></div>
 			<div>주소(도로명주소) : <%= restaurant.getStreetName() %> <%= restaurant.getDetailAddr() %></div>
-			<div>전화번호 : <%= restaurant.getPhoneNumber() %></div>
+			<div>전화번호 : <%= restaurant.getPhoneNumber().isEmpty() ? "전화번호 없음" : restaurant.getPhoneNumber() %></div>
 			<div>우편번호 : <%=restaurant.getZipCode() %>
 			<div>위도 : <%=restaurant.getLatitude() %></div>
 			<div>경도 : <%=restaurant.getLongitude() %></div>
+			<br>
+			<form method="post" action="naverInfo.jsp" accept-charset="utf-8">
+				<input type="hidden" id="id" name="id" value=<%=restaurant.getId() %>>
+				<button type="submit" class="btn btn-primary">네이버 지도에서 보기</button>	
+			</form>	
 		</div>
 	</div>
+	
+	
 	
 	    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=6oe2c5j1oe&callback=initMap"></script>
     <script type="text/javascript">
