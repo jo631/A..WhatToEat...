@@ -35,16 +35,16 @@
 	<jsp:include page="nav.jsp"></jsp:include>
 	
 	<%
-		//String id = request.getParameter("id");
-		//RestaurantRepository dao = RestaurantRepository.getInstance();
-		//Restaurant restaurant = dao.getProductById(id);
+		int id = Integer.parseInt(request.getParameter("id"));
+		RestaurantRepository dao = RestaurantRepository.getInstance();
+		Restaurant restaurant = dao.getById(id);
 	%>
 	
 	<div class="jumbotron">
 		<div class="mainTitle">
 			<h4 class="display-3">음식점 정보</h4>
-			<div style="font-weight: bold; font-size: 20px; margin-top: 20px;">음식점 이름 들어갈자리</div>
-			<div><h3><span class="badge bg-info text-white">치킨</span></h3></div>
+			<div style="font-weight: bold; font-size: 20px; margin-top: 20px;"><%=restaurant.getName() %></div>
+			<div><h3><span class="badge bg-info text-white"><%=restaurant.getCategory() %></span></h3></div>
 		</div>
 	</div>
 	
@@ -52,13 +52,12 @@
 		<div id="map" style="width: 400px; height: 400px;"/>	
 		</div>
 		<div class="contents">
-			<div><h3>이름 : </h3></div>
-			<div>카테고리 : <span class="badge bg-info text-white">치킨</span></div>
-			<div>주소(도로명주소) : </div>
-			<div>전화번호 : </div>
-			<div>우편번호 : </div>
-			<div>위도 : </div>
-			<div>경도 : </div>
+			<div><h3>이름 : <%=restaurant.getName() %></h3></div>
+			<div>카테고리 : <span class="badge bg-info text-white"><%=restaurant.getCategory() %></span></div>
+			<div>주소(도로명주소) : <%= restaurant.getStreetName() %> <%= restaurant.getDetailAddr() %></div>
+			<div>전화번호 : <%= restaurant.getPhoneNumber() %></div>
+			<div>위도 : <%=restaurant.getLatitude() %></div>
+			<div>경도 : <%=restaurant.getLongitude() %></div>
 		</div>
 	</div>
 	
@@ -68,17 +67,17 @@
 
         function initMap() {
             map = new naver.maps.Map('map', {
-                center: new naver.maps.LatLng(37.3595704, 127.105399),
+                center: new naver.maps.LatLng(<%=restaurant.getLatitude() %>, <%=restaurant.getLongitude() %>),
                 zoom: 15
             });
             var marker = new naver.maps.Marker({
-                position: new naver.maps.LatLng(37.3595704, 127.105399),
+                position: new naver.maps.LatLng(<%=restaurant.getLatitude() %>, <%=restaurant.getLongitude() %>),
                 map: map
             });
             var contentString = [
                 '<div class="iw_inner">',
-                '   <h4>음식점 이름이 들어갈 자리</h4>',
-                '   <p>주소가 들어갈 자리<br />',
+                '   <h4><%=restaurant.getName() %></h4>',
+                '   <p><%= restaurant.getStreetName() %> <%= restaurant.getDetailAddr() %><br />',
                 '   </p>',
                 '</div>'
             ].join('');
