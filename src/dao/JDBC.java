@@ -39,12 +39,11 @@ public class JDBC {
 			String detailAddr = rs.getString("detailAddr");
 			String category = rs.getString("category");
 			String phoneNumber = rs.getString("phoneNumber");
-			//float latitude = Float.parseFloat(rs.getString("latitude"));
-			//float longitude = Float.parseFloat(rs.getString("longitude"));
+			String zipCode = rs.getString("zipCode");
 			float latitude = rs.getFloat("latitude");
 			float longitude = rs.getFloat("longitude");
 			String imagePath = rs.getString("imagePath");
-			temp = new Restaurant(num, state, city, name, streetName, detailAddr, category, phoneNumber, latitude,
+			temp = new Restaurant(num, state, city, name, streetName, detailAddr, category, phoneNumber, zipCode, latitude,
 					longitude, imagePath);
 		}
 		return temp;
@@ -64,10 +63,11 @@ public class JDBC {
 			String detailAddr = rs.getString("detailAddr");
 			String cate = rs.getString("category");
 			String phoneNumber = rs.getString("phoneNumber");
+			String zipCode = rs.getString("zipCode");
 			float latitude = rs.getFloat("latitude");
 			float longitude = rs.getFloat("longitude");
 			String imagePath = rs.getString("imagePath");
-			list.add(new Restaurant(num, state, city, name, streetName, detailAddr, cate, phoneNumber, latitude,
+			list.add(new Restaurant(num, state, city, name, streetName, detailAddr, cate, phoneNumber,zipCode, latitude,
 					longitude, imagePath));
 		}
 		
