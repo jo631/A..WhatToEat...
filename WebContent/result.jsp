@@ -47,7 +47,8 @@
 						<h2 class="card-title"><%=r.getName()%>
 						</h2>
 						<p class="card-text"><%=r.getStreetName() %></p>
-						<a href="#" class="btn btn-primary">Read More &rarr;</a>
+						<a href="./detail.jsp?id=<%=r.getId() %>"
+				class = "btn btn-primary" role="button"> 이걸로 할래요 &rarr;></a>
 
 					</div>
 				</div>
