@@ -6,10 +6,9 @@
 <html>
 <head>
 <!-- Bootstrap core CSS -->
+<link href="vendor/css/blog-home.css" rel="stylesheet">
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
-<link href="vendor/css/blog-home.css" rel="stylesheet">
-
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -49,6 +48,22 @@ p {
 
 .check {
 	padding: 0 10px;
+}
+
+.classname {
+  -webkit-animation-name: cssAnimation;
+  -webkit-animation-duration:3s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease;
+  -webkit-animation-fill-mode: forwards;
+}
+@-webkit-keyframes cssAnimation {
+  from {
+    -webkit-transform: rotate(0deg) scale(1) skew(0deg) translate(100px);
+  }
+  to {
+    -webkit-transform: rotate(0deg) scale(2) skew(0deg) translate(100px);
+  }
 }
 </style>
 </head>
@@ -105,9 +120,7 @@ p {
 	}
 	%>
 
-	<div class="whatToEat">
-		<%=randValue%>
-	</div>
+	<div class="whatToEat" >아 뭐먹지?</div>
 
 	<!-- Button -->
 	<div class="button">
@@ -115,7 +128,7 @@ p {
 			<input type="hidden" id="latitude" name="latitude" value="">
 			<input type="hidden" id="longitude" name="longitude" value=""> 
 			<input type="hidden" name="value" value=<%=randValue %>>
-			<button type="submit" class="btn btn-success">아 뭐먹지?</button>
+			<button type="submit" class="btn btn-success">검색</button>
 			
 		</form>
 		
@@ -192,6 +205,14 @@ p {
 
 			 </script>
 	
+	<script>
+	$(function(){
+	    $('.whatToEat').click(function(){
+	        $('.whatToEat').text("<%=randValue%>");
+	    });
+	});
+	
+	</script>
 	
 	<!-- Footer -->
 	<jsp:include page="footer.jsp"></jsp:include>
