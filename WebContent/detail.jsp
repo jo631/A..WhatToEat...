@@ -56,6 +56,7 @@
 			<div>카테고리 : <span class="badge bg-info text-white"><%=restaurant.getCategory() %></span></div>
 			<div>주소(도로명주소) : <%= restaurant.getStreetName() %> <%= restaurant.getDetailAddr() %></div>
 			<div>전화번호 : <%= restaurant.getPhoneNumber() %></div>
+			<div>우편번호 : <%=restaurant.getZipCode() %>
 			<div>위도 : <%=restaurant.getLatitude() %></div>
 			<div>경도 : <%=restaurant.getLongitude() %></div>
 		</div>
