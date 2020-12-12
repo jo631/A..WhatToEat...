@@ -110,7 +110,7 @@ p {
 		for (String i : foods) {
 		allFood.remove(i);
 	}
-
+	//필터에 있는것들 제거한 뒤 randValue에 
 	String randValue;
 	Random r = new Random();
 	if (allFood.isEmpty()) {
@@ -127,7 +127,7 @@ p {
 		<form name="go" action="result.jsp" method="post">	
 			<input type="hidden" id="latitude" name="latitude" value="">
 			<input type="hidden" id="longitude" name="longitude" value=""> 
-			<input type="hidden" name="value" value=<%=randValue %>>
+			<input type="hidden" name="value" value=<%=allFood.isEmpty() ? "" :randValue %>>
 			<button type="submit" class="btn btn-success">검색</button>
 			
 		</form>
@@ -141,24 +141,10 @@ p {
 			<%
 				}
 			%>
-			
-			<%
-				if (!allFood.isEmpty()) {
-			%>
-			<input type="hidden" name="rand" value=<%=randValue%> />
-			<%
-				} else {
-			%>
-			<input type='hidden' name="rand" value="" />
-			<%
-				}
-			%>
+			<input type="hidden" name="rand" value=<%=allFood.isEmpty() ? "" :randValue %> />
 			<button type="button" class="btn btn-warning" onclick="onRestart()">재시작</button>
 		</form>
 	</div>
-
-
-
 
 	<script type="text/javascript">
 		function checkForm() {
