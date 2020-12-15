@@ -125,11 +125,16 @@ p {
 	<!-- Button -->
 	<div class="button">
 		<form name="go" action="result.jsp" method="post">	
+			<input type="radio" name="range" value="3" >3km
+			<input type="radio" name="range" value="5" checked>5km
+			<input type="radio" name="range" value="10" >10km
+			<input type="radio" name="range" value="100" >100km
 			<input type="hidden" id="latitude" name="latitude" value="">
 			<input type="hidden" id="longitude" name="longitude" value=""> 
 			<input type="hidden" name="value" value=<%=allFood.isEmpty() ? "" :randValue %>>
+			<div class="button">
 			<button type="submit" class="btn btn-success">검색</button>
-			
+			</div>
 		</form>
 		
 		<form name="restart" action="FoodServlet" method="post"

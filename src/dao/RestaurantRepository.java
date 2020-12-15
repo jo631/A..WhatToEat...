@@ -24,8 +24,8 @@ public class RestaurantRepository {
 		return db.getDbById(id);		
 	}
 	
-	public ArrayList<Restaurant> getByCategory(String category) throws SQLException{
-		return db.getDBbyCategory(category);
+	public ArrayList<Restaurant> getByCategory(String category, float range, float inputLatitude, float inputLongitude) throws SQLException{
+		return db.getDBbyCategory(category,range,inputLatitude,inputLongitude);
 	}
 	
 }

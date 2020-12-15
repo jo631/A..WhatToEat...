@@ -34,7 +34,6 @@ public class FoodServlet extends HttpServlet {
 
 		if (foods != null) {
 			for (String food : foods) {
-				//System.out.println(food);
 				list.add(food.split("/")[0]);
 			}
 		}
@@ -42,9 +41,6 @@ public class FoodServlet extends HttpServlet {
 		if (!hidden.equals("")) {
 			list.add(hidden.split("/")[0]);
 		}
-
-		for (String food : list)
-			System.out.println(food);
 
 		request.setAttribute("foods", list);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("main.jsp");
