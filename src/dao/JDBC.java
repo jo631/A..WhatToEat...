@@ -51,9 +51,7 @@ public class JDBC {
 	
 	public ArrayList<Restaurant> getDBbyCategory(String category, float range, float inputLatitude, float inputLongitude) throws SQLException {
 		ArrayList<Restaurant> list = new ArrayList<Restaurant>();
-		
-		//rs = stmt.executeQuery("SELECT * FROM WhatToEat.restaurant HAVING category = \""+category+"\"");
-		
+				
 		String query = "SELECT *,(6371*acos(cos(radians("+inputLatitude+"))*cos(radians(latitude))*cos(radians(longitude)\n" +
 			    	   "-radians("+inputLongitude+"))+sin(radians("+inputLatitude+"))*sin(radians(latitude))))\n" +
 			    	   "AS distance\n" +

@@ -22,14 +22,14 @@
 		RestaurantRepository dao = RestaurantRepository.getInstance();
 		String foodName = request.getParameter("value");
 		
-		float latitude=(float)37.3422, longitude=(float)126.7280;
+		float latitude=(float)37.3422, longitude=(float)126.7280; //산기대 좌표
 		
 		if(!request.getParameter("latitude").isEmpty() && !request.getParameter("longitude").isEmpty()){
 			latitude = Float.parseFloat(request.getParameter("latitude"));
 			longitude = Float.parseFloat(request.getParameter("longitude"));
 		}
-		
-		ArrayList<Restaurant> list = dao.getByCategory(foodName,10,latitude,longitude);
+		int range = Integer.parseInt(request.getParameter("range"));
+		ArrayList<Restaurant> list = dao.getByCategory(foodName,range,latitude,longitude);
 		
 	%>
 	<div class="container">
