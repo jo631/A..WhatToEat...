@@ -26,7 +26,7 @@ p {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin: 30px 200px;
+	margin: 10px 500px 30px 500px;
 	border: 1px solid black;
 }
 
@@ -42,28 +42,12 @@ p {
 	justify-content: center;
 	align-items: center;
 	height: 200px;
-	margin: 0px 500px 20px 500px;
+	margin: 0px 600px 70px 600px;
 	border: 1px solid black;
 }
 
 .check {
 	padding: 0 10px;
-}
-
-.classname {
-  -webkit-animation-name: cssAnimation;
-  -webkit-animation-duration:3s;
-  -webkit-animation-iteration-count: 1;
-  -webkit-animation-timing-function: ease;
-  -webkit-animation-fill-mode: forwards;
-}
-@-webkit-keyframes cssAnimation {
-  from {
-    -webkit-transform: rotate(0deg) scale(1) skew(0deg) translate(100px);
-  }
-  to {
-    -webkit-transform: rotate(0deg) scale(2) skew(0deg) translate(100px);
-  }
 }
 </style>
 </head>
@@ -71,8 +55,6 @@ p {
 <body>
 	<!-- Navigation -->
 	<jsp:include page="nav.jsp"></jsp:include>
-	<br>
-	<br>
 	<!-- Filter -->
 	<%
 	List<String> foods = (List<String>) request.getAttribute("foods");
@@ -82,7 +64,12 @@ p {
 	List<String> allFood = new ArrayList<>(Arrays.asList("구이", "국밥", "도시락", "디저트", "분식", "아시안", "양식", "일식", "족발,보쌈", "주점",
 			"중식", "찜,탕", "치킨", "패스트푸드", "피자", "한식"));
 	%>
+	
+
+	
 	<form name="form" action="FoodServlet" method="post" class="filter">
+		<div class="button">이건 제외해주세요</div>
+		<br>
 		<%
 			for (int i = 0; i < allFood.size(); i++) {
 				if (i % 6 == 0) {
@@ -121,7 +108,7 @@ p {
 	%>
 
 	<div class="whatToEat" >아 뭐먹지?</div>
-
+	
 	<!-- Button -->
 	<div class="button">
 		<form name="go" action="result.jsp" method="post">	
@@ -150,7 +137,7 @@ p {
 			<button type="button" class="btn btn-warning" onclick="onRestart()">재시작</button>
 		</form>
 	</div>
-
+	
 	<script type="text/javascript">
 		function checkForm() {
 			var food = [];
