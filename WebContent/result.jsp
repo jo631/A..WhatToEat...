@@ -21,17 +21,17 @@
 		request.setCharacterEncoding("UTF-8");
 		RestaurantRepository dao = RestaurantRepository.getInstance();
 		String foodName = request.getParameter("value");
-		ArrayList<Restaurant> list = dao.getByCategory(foodName);
 		
-		float latitude=0,longitude=0;
+		float latitude=(float)37.3422, longitude=(float)126.7280;
 		
 		if(!request.getParameter("latitude").isEmpty() && !request.getParameter("longitude").isEmpty()){
 			latitude = Float.parseFloat(request.getParameter("latitude"));
 			longitude = Float.parseFloat(request.getParameter("longitude"));
 		}
 		
+		ArrayList<Restaurant> list = dao.getByCategory(foodName,10,latitude,longitude);
+		
 	%>
-	
 	<div class="container">
 		<div class="row">
 			<!-- Blog Entries Column -->
