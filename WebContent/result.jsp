@@ -16,7 +16,6 @@
 <body>
 	<!-- Navigation -->
 	<jsp:include page="nav.jsp"></jsp:include>
-	<br><br><br>
 	<%
 		request.setCharacterEncoding("UTF-8");
 		RestaurantRepository dao = RestaurantRepository.getInstance();
