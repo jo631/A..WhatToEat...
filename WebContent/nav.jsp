@@ -14,7 +14,7 @@
 				<li class="nav-item active"><a class="nav-link" href="main.jsp">홈
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">게시판</a></li>
+				<li class="nav-item"><a class="nav-link" href="board.jsp">게시판</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">로그인</a></li>
 			</ul>
 		</div>

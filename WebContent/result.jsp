@@ -1,4 +1,4 @@
-<%@page import="java.util.ArrayList"%>
+<%@ page import="java.util.ArrayList"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="dto.Restaurant"%>
 <%@ page import="dao.RestaurantRepository"%>
