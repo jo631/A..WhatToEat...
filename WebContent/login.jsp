@@ -7,11 +7,11 @@
 
 <body>
 	<%
-	String userID = null;
+	String name = null;
 	if (session.getAttribute("name") != null) {
-		userID = (String) session.getAttribute("userID");
+		name = (String) session.getAttribute("name");
 	}
-	if (userID != null) {
+	if (name != null) {
 		// 이미 로그인 된 사용자가 로그인을 할 경우 
 		response.sendRedirect("main.jsp");
 	}
