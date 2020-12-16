@@ -68,7 +68,7 @@ p {
 
 	
 	<form name="form" action="FoodServlet" method="post" class="filter">
-		<div class="button">이건 제외해주세요</div>
+		<div class="button">제외할 메뉴</div>
 		<br>
 		<%
 			for (int i = 0; i < allFood.size(); i++) {

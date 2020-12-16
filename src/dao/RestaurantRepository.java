@@ -1,9 +1,11 @@
 package dao;
 
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dto.Restaurant;
+import dto.Member;
 
 public class RestaurantRepository {
 	
@@ -28,4 +30,19 @@ public class RestaurantRepository {
 		return db.getDBbyCategory(category,range,inputLatitude,inputLongitude);
 	}
 	
+	
+	public int JoinUser(Member m) {
+		if(m.getId() == null || m.getPassword() == null || m.getName() == null){ 
+			return -1; // 비어있음
+		}
+		
+		return db.join(m);
+	}
+	
+	public Member loginUser(String id, String pw) {
+		if(id == null || pw == null){ 
+			return null; // 비어있음
+		}
+		return db.login(id, pw);
+	}
 }
