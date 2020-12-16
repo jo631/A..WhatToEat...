@@ -4,12 +4,13 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import dto.Restaurant;
+import dto.Member;
 
 public class JDBC {
 	Connection conn = null;
 	Statement stmt = null;
 	ResultSet rs = null;
-	final String url = "jdbc:mysql://whattoeat.c9ihef0cs7y5.us-east-1.rds.amazonaws.com:3306/WhatToEat?characterEncoding=UTF-8&serverTimezone=UTC";	
+	final String url = "jdbc:mysql://whattoeat.c9ihef0cs7y5.us-east-1.rds.amazonaws.com:3306/WhatToEat?characterEncoding=UTF-8&serverTimezone=UTC";
 	final String userName = "root";
 	final String pw = "database";
 
@@ -43,24 +44,24 @@ public class JDBC {
 			float latitude = rs.getFloat("latitude");
 			float longitude = rs.getFloat("longitude");
 			String imagePath = rs.getString("imagePath");
-			temp = new Restaurant(num, state, city, name, streetName, detailAddr, category, phoneNumber, zipCode, latitude,
-					longitude, imagePath);
+			temp = new Restaurant(num, state, city, name, streetName, detailAddr, category, phoneNumber, zipCode,
+					latitude, longitude, imagePath);
 		}
 		return temp;
 	}
-	
-	public ArrayList<Restaurant> getDBbyCategory(String category, float range, float inputLatitude, float inputLongitude) throws SQLException {
+
+	public ArrayList<Restaurant> getDBbyCategory(String category, float range, float inputLatitude,
+			float inputLongitude) throws SQLException {
 		ArrayList<Restaurant> list = new ArrayList<Restaurant>();
-				
-		String query = "SELECT *,(6371*acos(cos(radians("+inputLatitude+"))*cos(radians(latitude))*cos(radians(longitude)\n" +
-			    	   "-radians("+inputLongitude+"))+sin(radians("+inputLatitude+"))*sin(radians(latitude))))\n" +
-			    	   "AS distance\n" +
-			    	   "FROM WhatToEat.restaurant\n" +
-			    	   "HAVING distance <= "+range+" && category =\""+category+"\"\n" +
-			    	   "ORDER BY distance";
-		
+
+		String query = "SELECT *,(6371*acos(cos(radians(" + inputLatitude
+				+ "))*cos(radians(latitude))*cos(radians(longitude)\n" + "-radians(" + inputLongitude
+				+ "))+sin(radians(" + inputLatitude + "))*sin(radians(latitude))))\n" + "AS distance\n"
+				+ "FROM WhatToEat.restaurant\n" + "HAVING distance <= " + range + " && category =\"" + category + "\"\n"
+				+ "ORDER BY distance";
+
 		rs = stmt.executeQuery(query);
-		
+
 		while (rs.next()) {
 			int num = rs.getInt("id");
 			String state = rs.getString("state");
@@ -74,12 +75,49 @@ public class JDBC {
 			float latitude = rs.getFloat("latitude");
 			float longitude = rs.getFloat("longitude");
 			String imagePath = rs.getString("imagePath");
-			list.add(new Restaurant(num, state, city, name, streetName, detailAddr, cate, phoneNumber,zipCode, latitude,
-					longitude, imagePath));
+			list.add(new Restaurant(num, state, city, name, streetName, detailAddr, cate, phoneNumber, zipCode,
+					latitude, longitude, imagePath));
 		}
-		
-		
+
 		return list;
 	}
 
+	// 회원가입
+	public int join(Member user) {
+		String query = "INSERT INTO WhatToEat.member (id, password, name) VALUES (\"" + user.getId() + "\", \""
+				+ user.getPassword() + "\", \"" + user.getName() + "\")";
+
+		try {
+			return stmt.executeUpdate(query); // 0이면 중복
+		} catch (Exception e) {
+			return -1; //회원가입 못할떄
+		}
+	}
+
+	// 로그인
+	public Member login(String id, String pw) {
+		
+		String query = "SELECT * FROM WhatToEat.member where id=\""+id+"\"";
+		
+		try {
+			rs = stmt.executeQuery(query);
+			
+			while(rs.next()) {
+				int number = rs.getInt("number");
+				String _id = rs.getString("id");
+				String _pw = rs.getString("password");
+				String name = rs.getString("name");
+				
+				if(pw.equals(_pw)) {
+					return new Member(number,_id,_pw,name);
+				} else {
+					return null;
+				}
+				
+			}
+		} catch(Exception e) {
+			return null;
+		}	
+		return null;
+	}
 }
