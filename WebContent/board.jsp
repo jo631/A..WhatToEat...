@@ -1,3 +1,6 @@
+<%@page import="dto.Comment"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dao.RestaurantRepository"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,40 +14,32 @@
 <body>
 	<!-- Navigation -->
 	<jsp:include page="nav.jsp"></jsp:include>
-
+	
+	<%
+		RestaurantRepository dao = RestaurantRepository.getInstance();
+		
+		ArrayList<Comment> comments = dao.reviewAllSearch();
+	%>
+	
 	<div style="display: flex; justify-content: center; align-items: center; padding: 0 300px;">
-		<div class="card-group">
-		  <div class="card">
-		    <img src="resource/japan.jpg" class="card-img-top" alt="...">
-		    <div class="card-body">
-		      <h5 class="card-title">Card title</h5>
-		      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-		    </div>
-		    <div class="card-footer">
-		      <small class="text-muted">Last updated 3 mins ago</small>
-		    </div>
-		  </div>
-		  <div class="card">
-		    <img src="resource/japan.jpg" class="card-img-top" alt="...">
-		    <div class="card-body">
-		      <h5 class="card-title">Card title</h5>
-		      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-		    </div>
-		    <div class="card-footer">
-		      <small class="text-muted">Last updated 3 mins ago</small>
-		    </div>
-		  </div>
-		  <div class="card">
-		    <img src="resource/japan.jpg" class="card-img-top" alt="...">
-		    <div class="card-body">
-		      <h5 class="card-title">Card title</h5>
-		      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-		    </div>
-		    <div class="card-footer">
-		      <small class="text-muted">Last updated 3 mins ago</small>
-		    </div>
-		  </div>
-		</div>
+		<table class="table-dark table-striped table-hover" style="width: 100%; ">
+			<thead class="table-dark">
+				<tr>
+					<th class="table-dark">닉네임</th>
+					<th class="table-dark">리뷰</th>
+					<th class="table-dark">상세페이지</th>
+				</tr>
+			</thead>		
+			<%for (Comment c : comments) { %>
+			<tr class="table-info">
+				<th style="font-size:20px;" class="table-info text-dark"><%=c.getUsername() %></th>
+				<td class="table-info text-dark"><%=c.getComment() %> </td>
+				<td class="table-info text-dark">
+					<button onclick="location='detail.jsp?id=<%=c.getResNum()%>'" class="btn btn-primary">상세페이지</button>
+				</td>
+			</tr>
+			<%} %>
+		</table>
 	</div>
 
 
