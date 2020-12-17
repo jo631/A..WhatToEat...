@@ -40,7 +40,7 @@
 			<div class="col-4">
 				<p></p>
 				<div class="card">
-					<img class="card-img-top" src="resource/japan.jpg"
+					<img class="card-img-top" src=<%="resource/"+r.getImagePath()%>
 						alt="Card image cap">
 					<div class="card-body">
 						<h2 class="card-title"><%=r.getName()%>

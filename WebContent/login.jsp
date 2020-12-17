@@ -13,7 +13,9 @@
 	}
 	if (name != null) {
 		// 이미 로그인 된 사용자가 로그인을 할 경우 
-		response.sendRedirect("main.jsp");
+	%>
+		<script> alert('이미 로그인 되어있습니다.'); window.history.back(); </script>
+	<%
 	}
 	%>
 	<!-- Navigation -->

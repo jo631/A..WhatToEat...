@@ -14,11 +14,13 @@
 	Member m = new Member(id, pw, name);
 
 	if (dao.JoinUser(m) == -1) {
-		//회원가입 실패할떄 액션 추가해야됨
-		response.sendRedirect("join.jsp");
+	%>
+		<script> alert('회원가입 실패'); window.history.back(); </script>
+	<%
 	} else {
-		//성공할때 액션 추가해야됨
-		response.sendRedirect("main.jsp");
+	%>
+		<script> alert('회원가입 성공'); window.history.back(-2); </script>
+	<%
 	}
 	%>
 </body>

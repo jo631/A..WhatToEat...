@@ -13,12 +13,15 @@
 	Member m = dao.loginUser(id, pw);
 
 	if (m == null) {
-		//로그인 실패할 때 액션 추가해야됨
-		response.sendRedirect("login.jsp");
+	%>
+		<script> alert('로그인 실패'); window.history.back(); </script>
+	<%
 	} else {
 		//성공할때 액션 추가해야됨
 		session.setAttribute("name",m.getName());
-		response.sendRedirect("main.jsp");
+	%>
+		<script> alert('로그인 성공'); window.history.back(-2); </script>
+	<%
 	}
 	%>
 </body>
