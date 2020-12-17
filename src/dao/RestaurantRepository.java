@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dto.Restaurant;
+import dto.Comment;
 import dto.Member;
 
 public class RestaurantRepository {
@@ -51,5 +52,9 @@ public class RestaurantRepository {
 	
 	public int reviewDelete(int boardNum, String userName) {
 		return db.reviewDelete(boardNum, userName);
+	}
+	
+	public ArrayList<Comment> reviewSearch(int restaurantId){
+		return db.reviewSearch(restaurantId);
 	}
 }

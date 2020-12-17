@@ -56,9 +56,7 @@
 		RestaurantRepository dao = RestaurantRepository.getInstance();
 		Restaurant restaurant = dao.getById(id);
 		
-		ArrayList<Comment> comments = new ArrayList<>();
-		comments.add(new Comment("ㅇㅇ", "제육 맛집"));
-		comments.add(new Comment("ㅇㅇ", "맛없음"));
+		ArrayList<Comment> comments = dao.reviewSearch(id);
 	%>
 	
 	<div class="jumbotron">

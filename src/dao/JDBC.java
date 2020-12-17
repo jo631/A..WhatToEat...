@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import dto.Restaurant;
+import dto.Comment;
 import dto.Member;
 
 public class JDBC {
@@ -141,5 +142,24 @@ public class JDBC {
 		}	
 	}
 	
-	
+	public ArrayList<Comment> reviewSearch(int restaurantId) {
+		ArrayList<Comment> list = new ArrayList<Comment>();
+		
+		String query = "SELECT * FROM WhatToEat.board where restaurantNum = "+restaurantId;
+		try {
+			rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				int boardNum = rs.getInt("boardNum");
+				String username = rs.getString("userName");
+				int resNum = rs.getInt("restaurantNum");
+				String comment = rs.getString("Text");
+				
+				list.add(new Comment(boardNum, username, resNum, comment));
+			}
+			
+			return list;
+		} catch (SQLException e) {
+			return null;
+		}			
+	}
 }
