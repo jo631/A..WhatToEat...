@@ -1,3 +1,4 @@
+<%@page import="dao.SHA256"%>
 <head>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="dao.RestaurantRepository"%>
@@ -7,8 +8,10 @@
 <body>
 	<%
 	RestaurantRepository dao = RestaurantRepository.getInstance();
+	request.setCharacterEncoding("utf-8");
 	String id = request.getParameter("userID");
-	String pw = request.getParameter("userPassword");
+	String rawpw = request.getParameter("userPassword");
+	String pw = SHA256.cvt(rawpw);
 	String name = request.getParameter("userName");
 
 	Member m = new Member(id, pw, name);
@@ -19,7 +22,7 @@
 	<%
 	} else {
 	%>
-		<script> alert('회원가입 성공'); window.history.back(-2); </script>
+		<script> alert('회원가입 성공'); window.history.go(-2); </script>
 	<%
 	}
 	%>

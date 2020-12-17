@@ -1,7 +1,7 @@
-<%@page import="java.util.Random"%>
-<%@page import="java.util.Arrays"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
+<%@ page import="java.util.Random"%>
+<%@ page import="java.util.Arrays"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.List"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <html>
 <head>
@@ -21,13 +21,21 @@ p {
 	margin: 20px 0px;
 }
 
-.filter {
+.main_container {
+	display: flex;
+	width: 100vw;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.main_container_form {
+	width: 700px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;	
-	margin: 10px 500px 30px 500px;
-	border: 1px solid black;
+	align-items: center;
+	padding: 10px;
 }
 
 .button {
@@ -37,17 +45,30 @@ p {
 	align-items: center;
 }
 
-.whatToEat {
+#select {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 200px;
-	margin: 0px 600px 70px 600px;
-	border: 1px solid black;
+	font-size: 25px;
+	width: 180px;
+	height: 80px;
+	cursor: pointer;
+	transition: all 2s;
+}
+
+#result {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	font-size: 25px;
+	width: 180px;
+	height: 80px;
+	cursor: default;
+	transition: all 2s;
 }
 
 .check {
-	padding: 0 10px;
+	padding: 10px 10px;
 }
 </style>
 </head>
@@ -57,40 +78,45 @@ p {
 	<jsp:include page="nav.jsp"></jsp:include>
 	<!-- Filter -->
 	<%
-	List<String> foods = (List<String>) request.getAttribute("foods");
-	if (foods == null)
+		List<String> foods = (List<String>) request.getAttribute("foods");
+	if (foods == null) {
 		foods = new ArrayList<String>();
+		request.setAttribute("foods", foods);
+	}
 
 	List<String> allFood = new ArrayList<>(Arrays.asList("구이", "국밥", "도시락", "디저트", "분식", "아시안", "양식", "일식", "족발,보쌈", "주점",
 			"중식", "찜,탕", "치킨", "패스트푸드", "피자", "한식"));
 	%>
-	
 
-	
-	<form name="form" action="FoodServlet" method="post" class="filter">
+
+	<div class="main_container">
+	<form name="form" action="FoodServlet" method="post" class="filter main_container_form card">
+
 
 		<div style="font-weight: bold; font-size: 25px">이건 제외해주세요!</div>
 		<br>
 		<%
 			for (int i = 0; i < allFood.size(); i++) {
-				if (i % 6 == 0) {
+			if (i % 6 == 0) {
 		%>
-				<div style="display: flex">
-		<%
+		<div style="display: flex">
+			<%
 				}
-		%>
-					<div class="check"><input type='checkbox' name="food" value=<%=allFood.get(i)%>
-						<%=foods.contains(allFood.get(i)) ? "checked" : ""%> /><%=allFood.get(i)%></div>
+			%>
+			<div class="check">
+				<input type='checkbox' name="food" value=<%=allFood.get(i)%>
+					<%=foods.contains(allFood.get(i)) ? "checked" : ""%> /><%=allFood.get(i)%></div>
+			<%
+				if (i % 6 == 5 || i + 1 == allFood.size()) {
+			%>
+		</div>
 		<%
-				if (i % 6 == 5 || i+1 == allFood.size()) {
-		%>
-				</div>
-		<%
-				}
 			}
+		}
 		%>
 		<input type='hidden' name="rand" value="" />
 		<button type="button" onclick="onSubmit()" class="btn btn-primary">선택</button>
+		<button type="button" onclick="onClear()" class="btn btn-danger">초기화</button>
 	</form>
 
 
@@ -102,43 +128,54 @@ p {
 	String randValue;
 	Random r = new Random();
 	if (allFood.isEmpty()) {
-		randValue = "필터에 전부 다 체크돼있어요";
+		randValue = "먹을게 없어요...";
 	} else {
 		randValue = allFood.get(r.nextInt(allFood.size()));
 	}
 	%>
 
-	<div class="whatToEat" >아 뭐먹지?</div>
-	
-	<!-- Button -->
-	<div class="button">
-		<form name="go" action="result.jsp" method="post">	
-			<input type="radio" name="range" value="3" >3km
-			<input type="radio" name="range" value="5" checked>5km
-			<input type="radio" name="range" value="10" >10km
-			<input type="radio" name="range" value="100" >100km
-			<input type="hidden" id="latitude" name="latitude" value="">
-			<input type="hidden" id="longitude" name="longitude" value=""> 
-			<input type="hidden" name="value" value=<%=allFood.isEmpty() ? "" :randValue %>>
-			<div class="button">
-			<button type="submit" class="btn btn-success">검색</button>
+	<div class="whatToEat main_container_form card">
+		<div style="padding: 50px;">
+			<div id="select" onclick="showResult()" class="badge bg-primary text-white">
+			아 뭐먹지?</div>
+			<div id="result" class="badge bg-success text-white">Success</div>
+		</div>
+		<div class="button">
+			<div id="controller" style="display: none; flex-direction: column; justify-content: center; align-items: center;">
+				<form name="go" action="result.jsp" method="post" >
+					<input type="radio" name="range" value="3">3km <input
+						type="radio" name="range" value="5" checked>5km <input
+						type="radio" name="range" value="10">10km <input
+						type="radio" name="range" value="100">100km <input
+						type="hidden" id="latitude" name="latitude" value=""> <input
+						type="hidden" id="longitude" name="longitude" value=""> <input
+						type="hidden" name="value"
+						value=<%=allFood.isEmpty() ? "" : randValue%>>
+					<div class="button">
+						<button type="submit" class="btn btn-success">검색</button>
+					</div>
+				</form>
+
+				<form name="restart" action="FoodServlet" method="post"
+					style="margin-top: 20px;">
+					<%
+						for (String i : foods) {
+					%>
+					<input type="hidden" name="food" value=<%=i%> />
+					<%
+						}
+					%>
+					<input type="hidden" name="rand"
+						value=<%=allFood.isEmpty() ? "" : randValue%> />
+					<button type="button" class="btn btn-warning" onclick="onRestart()">재시작</button>
+				</form>
 			</div>
-		</form>
-		
-		<form name="restart" action="FoodServlet" method="post"
-			style="margin-top: 20px;">
-			<%
-				for (String i : foods) {
-			%>
-			<input type="hidden" name="food" value=<%=i%> />
-			<%
-				}
-			%>
-			<input type="hidden" name="rand" value=<%=allFood.isEmpty() ? "" :randValue %> />
-			<button type="button" class="btn btn-warning" onclick="onRestart()">재시작</button>
-		</form>
+		</div>
 	</div>
-	
+	</div>
+
+
+
 	<script type="text/javascript">
 		function checkForm() {
 			var food = [];
@@ -161,7 +198,25 @@ p {
 			var form = document.restart;
 			form.submit();
 		}
-	</script>
+		
+		function showResult() {
+	        $('#select').text("<%=randValue%>");
+	        $('#result').text("<%=randValue%>");
+			$('#result').css("display", "flex");
+			$('#select').css("display", "none");
+			if(document.getElementById("result").innerHTML != "먹을게 없어요...") {
+				$('#controller').css("display", "flex");
+			}
+		}
+		
+		function onClear() {
+			var form = document.form;
+			for (var cb of form.food) {
+				cb.checked = false;
+			}
+			form.submit();
+		}
+		</script>
 
 
 	<script>
@@ -183,16 +238,7 @@ p {
 			});
 
 			 </script>
-	
-	<script>
-	$(function(){
-	    $('.whatToEat').click(function(){
-	        $('.whatToEat').text("<%=randValue%>");
-	    });
-	});
-	
-	</script>
-	
+
 	<!-- Footer -->
 	<jsp:include page="footer.jsp"></jsp:include>
 

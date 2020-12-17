@@ -1,6 +1,5 @@
 package dao;
 
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
