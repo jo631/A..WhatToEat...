@@ -46,46 +46,10 @@ p {
 	align-items: center;
 	flex-direction: column;
 	margin: 0px 600px 70px 600px;
-}
-
-border
-:
- 
-5px
- 
-solid
- 
-#2da64d
-;
-
-	
-border-radius
-:
- 
-50px
-;
-
-	
-box-shadow
-:
- 
-12px
- 
-10px
- 
-8px
- 
-gray
-;
-
-	
-padding
-:
- 
-30px
-;
-
-
+	border: 5px solid #2da64d;
+	border-radius:50px;	
+	box-shadow: 12px 10px 8px gray;
+	padding:30px;
 }
 #select {
 	display: block;
@@ -172,8 +136,7 @@ padding
 			<div id="result" class="badge rounded-pill bg-success text-white">Success</div>
 		</div>
 		<div class="button">
-			<div
-				style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+			<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
 				<form name="go" action="result.jsp" method="post">
 					<input type="radio" name="range" value="3">3km <input
 						type="radio" name="range" value="5" checked>5km <input
