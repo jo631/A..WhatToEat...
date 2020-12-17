@@ -44,4 +44,12 @@ public class RestaurantRepository {
 		}
 		return db.login(id, pw);
 	}
+	
+	public int reviewInsert(String userName, int restaurantid, String text) {
+		return db.reviewInsert(userName, restaurantid, text);
+	}
+	
+	public int reviewDelete(int boardNum, String userName) {
+		return db.reviewDelete(boardNum, userName);
+	}
 }

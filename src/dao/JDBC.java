@@ -120,4 +120,26 @@ public class JDBC {
 		}	
 		return null;
 	}
+	
+	
+	public int reviewInsert(String userName, int restaurantid, String text) {
+		String query = "INSERT INTO `WhatToEat`.`board` (`userName`, `restaurantNum`, `Text`) VALUES ('"+userName+"', '"+restaurantid+"', '"+text+"')";
+		
+		try {
+			return stmt.executeUpdate(query);
+		} catch(Exception e) {
+			return -1;
+		}	
+	}
+	
+	public int reviewDelete(int boardNum, String userName) {
+		String query = "DELETE FROM WhatToEat.board WHERE boardNum = '"+boardNum+"' AND userName = '"+userName+"'";
+		try {
+			return stmt.executeUpdate(query);
+		} catch(Exception e) {
+			return -1;
+		}	
+	}
+	
+	
 }
