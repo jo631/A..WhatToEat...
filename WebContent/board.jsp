@@ -11,7 +11,7 @@
 <body>
 	<!-- Navigation -->
 	<jsp:include page="nav.jsp"></jsp:include>
-	
+
 	<div style="display: flex; justify-content: center; align-items: center; padding: 0 300px;">
 		<div class="card-group">
 		  <div class="card">
@@ -46,8 +46,8 @@
 		  </div>
 		</div>
 	</div>
-	
-	
+
+
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
-</html>
+</html> 

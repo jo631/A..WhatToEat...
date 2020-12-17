@@ -1,7 +1,7 @@
-<%@ page import="java.util.Random"%>
-<%@ page import="java.util.Arrays"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="java.util.List"%>
+<%@page import="java.util.Random"%>
+<%@page import="java.util.Arrays"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <html>
 <head>
@@ -25,12 +25,9 @@ p {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
+	align-items: center;	
 	margin: 10px 500px 30px 500px;
-	border: 5px solid #3126ff;
-	border-radius: 250px;
-	box-shadow: 12px 10px 8px gray;
-	padding: 10px;
+	border: 1px solid black;
 }
 
 .button {
@@ -44,29 +41,13 @@ p {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	flex-direction: column;
+	height: 200px;
 	margin: 0px 600px 70px 600px;
-	border: 5px solid #2da64d;
-	border-radius: 50px;
-	box-shadow: 12px 10px 8px gray;
-	padding: 30px;
-}
-#select{
-	display: block;
-	font-size: 30px;
-	padding: 20px;
-	cursor: pointer;
-	transition: all 2s;
-}
-#result{
-	padding: 20px;
-	font-size: 30px;
-	display: none;
-	transition: all 2s;
+	border: 1px solid black;
 }
 
 .check {
-	padding: 10px 10px;
+	padding: 0 10px;
 }
 </style>
 </head>
@@ -87,6 +68,7 @@ p {
 
 	
 	<form name="form" action="FoodServlet" method="post" class="filter">
+
 		<div style="font-weight: bold; font-size: 25px">이건 제외해주세요!</div>
 		<br>
 		<%
@@ -125,46 +107,37 @@ p {
 		randValue = allFood.get(r.nextInt(allFood.size()));
 	}
 	%>
-	
-	<div class="whatToEat">
-		<!-- <div id="select">아 뭐먹지?</div> -->
-		<div style="padding:50px;">		
-			<div id="select" class="badge rounded-pill bg-primary text-white">아 뭐먹지?</div>
-			<div id="result" class="badge rounded-pill bg-success text-white">Success</div>
-		</div>
-		<div class="button">
-			<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-				<form name="go" action="result.jsp" method="post">	
-					<input type="radio" name="range" value="3" >3km
-					<input type="radio" name="range" value="5" checked>5km
-					<input type="radio" name="range" value="10" >10km
-					<input type="radio" name="range" value="100" >100km
-					<input type="hidden" id="latitude" name="latitude" value="">
-					<input type="hidden" id="longitude" name="longitude" value=""> 
-					<input type="hidden" name="value" value=<%=allFood.isEmpty() ? "" :randValue %>>
-					<div class="button">
-						<button type="submit" class="btn btn-success">검색</button>
-					</div>
-				</form>
-				
-				<form name="restart" action="FoodServlet" method="post"
-					style="margin-top: 20px;">
-					<%
-						for (String i : foods) {
-					%>
-					<input type="hidden" name="food" value=<%=i%> />
-					<%
-						}
-					%>
-					<input type="hidden" name="rand" value=<%=allFood.isEmpty() ? "" :randValue %> />
-					<button type="button" class="btn btn-warning" onclick="onRestart()">재시작</button>
-				</form>
-			
-			</div>
-		</div>
-	</div>
+
+	<div class="whatToEat" >아 뭐먹지?</div>
 	
 	<!-- Button -->
+	<div class="button">
+		<form name="go" action="result.jsp" method="post">	
+			<input type="radio" name="range" value="3" >3km
+			<input type="radio" name="range" value="5" checked>5km
+			<input type="radio" name="range" value="10" >10km
+			<input type="radio" name="range" value="100" >100km
+			<input type="hidden" id="latitude" name="latitude" value="">
+			<input type="hidden" id="longitude" name="longitude" value=""> 
+			<input type="hidden" name="value" value=<%=allFood.isEmpty() ? "" :randValue %>>
+			<div class="button">
+			<button type="submit" class="btn btn-success">검색</button>
+			</div>
+		</form>
+		
+		<form name="restart" action="FoodServlet" method="post"
+			style="margin-top: 20px;">
+			<%
+				for (String i : foods) {
+			%>
+			<input type="hidden" name="food" value=<%=i%> />
+			<%
+				}
+			%>
+			<input type="hidden" name="rand" value=<%=allFood.isEmpty() ? "" :randValue %> />
+			<button type="button" class="btn btn-warning" onclick="onRestart()">재시작</button>
+		</form>
+	</div>
 	
 	<script type="text/javascript">
 		function checkForm() {
@@ -213,11 +186,8 @@ p {
 	
 	<script>
 	$(function(){
-	    $('#select').click(function(){
-	        $('#select').text("<%=randValue%>");
-	        $('#result').text("<%=randValue%>");
-	        $('#result').css("display","block");
-	        $('#select').css("display","none");
+	    $('.whatToEat').click(function(){
+	        $('.whatToEat').text("<%=randValue%>");
 	    });
 	});
 	
