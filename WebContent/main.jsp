@@ -92,6 +92,7 @@ p {
 	<div class="main_container">
 	<form name="form" action="FoodServlet" method="post" class="filter main_container_form card">
 
+
 		<div style="font-weight: bold; font-size: 25px">이건 제외해주세요!</div>
 		<br>
 		<%
