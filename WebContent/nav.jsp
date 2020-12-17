@@ -15,11 +15,15 @@
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="board.jsp">게시판</a></li>
-				<li class="nav-item"><a class="nav-link" href="join.jsp">회원가입</a></li>
-				<li class="nav-item"><a class="nav-link" href="login.jsp">로그인</a></li>
-				<li class="nav-item"><a class="nav-link" href="logout_act.jsp">로그아웃</a></li>
 			</ul>
 		</div>
 	</div>
+	  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+        	<li class="nav-item"><a class="nav-link" href="join.jsp">회원가입</a></li>
+			<li class="nav-item"><a class="nav-link" href="login.jsp">로그인</a></li>
+			<li class="nav-item"><a class="nav-link" href="logout_act.jsp">로그아웃</a></li>
+        </ul>
+    </div>
 </nav>
 <br>
