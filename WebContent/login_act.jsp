@@ -21,7 +21,6 @@
 	} else {
 		//성공할때 액션 추가해야됨
 		session.setAttribute("name",m.getName());
-		session.setAttribute("num", m.getNum());
 	%>
 		<script> alert('로그인 성공'); window.history.go(-2); </script>
 	<%

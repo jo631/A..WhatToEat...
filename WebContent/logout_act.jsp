@@ -9,7 +9,6 @@
 	if(session.getAttribute("name") != null){
 		//로그아웃 성공했을떄
 		session.setAttribute("name",null);
-		session.setAttribute("num", null);
 %>
 		<script> alert('로그아웃 되었습니다.'); window.history.back(); </script>
 <%
