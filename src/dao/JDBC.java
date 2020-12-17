@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import dto.Restaurant;
+import dto.Comment;
 import dto.Member;
 
 public class JDBC {
@@ -119,5 +120,46 @@ public class JDBC {
 			return null;
 		}	
 		return null;
+	}
+	
+	
+	public int reviewInsert(String userName, int restaurantid, String text) {
+		String query = "INSERT INTO `WhatToEat`.`board` (`userName`, `restaurantNum`, `Text`) VALUES ('"+userName+"', '"+restaurantid+"', '"+text+"')";
+		
+		try {
+			return stmt.executeUpdate(query);
+		} catch(Exception e) {
+			return -1;
+		}	
+	}
+	
+	public int reviewDelete(int boardNum, String userName) {
+		String query = "DELETE FROM WhatToEat.board WHERE boardNum = '"+boardNum+"' AND userName = '"+userName+"'";
+		try {
+			return stmt.executeUpdate(query);
+		} catch(Exception e) {
+			return -1;
+		}	
+	}
+	
+	public ArrayList<Comment> reviewSearch(int restaurantId) {
+		ArrayList<Comment> list = new ArrayList<Comment>();
+		
+		String query = "SELECT * FROM WhatToEat.board where restaurantNum = "+restaurantId;
+		try {
+			rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				int boardNum = rs.getInt("boardNum");
+				String username = rs.getString("userName");
+				int resNum = rs.getInt("restaurantNum");
+				String comment = rs.getString("Text");
+				
+				list.add(new Comment(boardNum, username, resNum, comment));
+			}
+			
+			return list;
+		} catch (SQLException e) {
+			return null;
+		}			
 	}
 }
