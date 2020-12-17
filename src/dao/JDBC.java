@@ -162,4 +162,26 @@ public class JDBC {
 			return null;
 		}			
 	}
+	
+	public ArrayList<Comment> reviewAllSearch(){
+		ArrayList <Comment> list = new ArrayList<Comment>();
+		String query = "SELECT * FROM WhatToEat.board";
+		
+		try {
+			rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				int boardNum = rs.getInt("boardNum");
+				String username = rs.getString("userName");
+				int resNum = rs.getInt("restaurantNum");
+				String comment = rs.getString("Text");
+				list.add(new Comment(boardNum, username, resNum, comment));
+			}
+			
+			return list;
+		} catch (SQLException e) {
+			return null;
+		}
+		
+		
+	}
 }

@@ -57,4 +57,7 @@ public class RestaurantRepository {
 	public ArrayList<Comment> reviewSearch(int restaurantId){
 		return db.reviewSearch(restaurantId);
 	}
+	public ArrayList<Comment> reviewAllSearch(){
+		return db.reviewAllSearch();
+	}
 }
