@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dto.Restaurant;
+import dto.Comment;
 import dto.Member;
 
 public class RestaurantRepository {
@@ -43,5 +44,17 @@ public class RestaurantRepository {
 			return null; // 비어있음
 		}
 		return db.login(id, pw);
+	}
+	
+	public int reviewInsert(String userName, int restaurantid, String text) {
+		return db.reviewInsert(userName, restaurantid, text);
+	}
+	
+	public int reviewDelete(int boardNum, String userName) {
+		return db.reviewDelete(boardNum, userName);
+	}
+	
+	public ArrayList<Comment> reviewSearch(int restaurantId){
+		return db.reviewSearch(restaurantId);
 	}
 }

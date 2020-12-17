@@ -1,3 +1,5 @@
+<%@page import="dto.Comment"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="dto.Restaurant" %>
@@ -17,7 +19,7 @@
 	text-align: center
 }
 
-.container{
+.detail_container{
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -29,6 +31,21 @@
 	justify-content: center;
 	margin-left: 30px;
 }
+.comment_container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 200px;
+}
+.input_name {
+	min-width: 150px;
+	width: 15%
+}
+.input_submit {
+	min-width: 100px;
+	width: 10%
+}
 </style>
 </head>
 <body>
@@ -38,6 +55,8 @@
 		int id = Integer.parseInt(request.getParameter("id"));
 		RestaurantRepository dao = RestaurantRepository.getInstance();
 		Restaurant restaurant = dao.getById(id);
+		
+		ArrayList<Comment> comments = dao.reviewSearch(id);
 	%>
 	
 	<div class="jumbotron">
@@ -48,9 +67,8 @@
 		</div>
 	</div>
 	
-	<div class="container">
-		<div id="map" style="width: 400px; height: 400px;"/>	
-		</div>
+	<div class="container detail_container">
+		<div id="map" style="width: 400px; height: 400px;"></div>	
 		<div class="contents">
 			<div><h3>이름 : <%=restaurant.getName() %></h3></div>
 			<div>카테고리 : <span class="badge bg-info text-white"><%=restaurant.getCategory() %></span></div>
@@ -66,10 +84,30 @@
 			</form>	
 		</div>
 	</div>
+	</div>
 	
-	
-	
-	    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=6oe2c5j1oe&callback=initMap"></script>
+	<div class="container comment_container">
+		<form action="CommentServlet" method="post" style="display: flex; width: 100%; margin-top: 10px;">
+			<input type="text" name="comment" class="form-control" maxlength="50" placeholder="댓글을 입력하세요.">
+			<input type="hidden" name="id" value="<%=id%>">
+			<input type="submit" style="width: 80px; margin-left: 10px;" class="btn btn-primary" value="등록">
+		</form>
+		<table class="table comments">
+			<tbody>
+				<%
+					for (Comment cmt : comments) {
+				%>
+					<tr>
+						<td class="input_name"><%=cmt.getUsername() %></td>
+						<td class="input_comment"><%=cmt.getComment() %></td>
+					</tr>
+				<%
+					}
+				%>
+			</tbody>
+		</table>
+	</div>
+	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=6oe2c5j1oe&callback=initMap"></script>
     <script type="text/javascript">
         var map = null;
 
